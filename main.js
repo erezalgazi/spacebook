@@ -1,5 +1,21 @@
 var SpacebookApp = function () {
-  var posts = [];
+  var posts = [
+    {text: "Hello world", id: 0, comments:[
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"}
+    ]},
+    {text: "Hello world", id: 0, comments:[
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"}
+    ]},
+    {text: "Hello world", id: 0, comments:[
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"},
+      { text: "Man, this is a comment!"}
+    ]}
+  ];
 
   // the current id to assign to a post
   var currentId = 0;
@@ -29,9 +45,14 @@ var SpacebookApp = function () {
 
     for (var i = 0; i < posts.length; i += 1) {
       var post = posts[i];
-      $posts.append('<p class="post" data-id=' + post.id + '>'
-        + '<a href="#" class="remove">remove</a> ' + post.text + '</p>');
 
+      var commentContainer = '<div class="comments-container">' +
+      '<input type="text" id="comment-name">' +
+      '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
+
+      $posts.append('<div class="post" data-id=' + post.id + '>'
+        + '<a href="#" class="remove">remove</a> ' + '<a href="#" class="show-comments">comments</a> ' + post.text +
+        commentContainer + '</div>');
     }
   }
 
@@ -45,10 +66,21 @@ var SpacebookApp = function () {
     $clickedPost.remove();
   }
 
+  var toggleComments = function (currentPost) {
+    var $clickedPost = $(currentPost).closest('.post');
+    $clickedPost.find('.comments-container').toggleClass('show');
+  }
+
   return {
     createPost: createPost,
     renderPosts: renderPosts,
-    removePost: removePost
+    removePost: removePost,
+
+    createComment: createComment,
+    renderComments: renderComments,
+    removeComments: removeComments,
+
+    toggleComments: toggleComments
   }
 }
 
@@ -63,9 +95,13 @@ $('.add-post').on('click', function (e) {
 
   var text = $('#post-name').val();
   app.createPost(text);
-  app.renderPosts();
+  app.renderPostsxs();
 });
 
-$('.posts').delegate('a', 'click', function () {
+$('.posts').delegate('.remove', 'click', function () {
   app.removePost(this);
+});
+
+$('.posts').delegate('.show-comments', 'click', function () {
+  app.toggleComments(this);
 });
