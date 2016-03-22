@@ -1,13 +1,8 @@
 var SpacebookApp = function () {
-  var posts = [
-    {text: "Hello world", id: 1},
-    {text: "Hello world", id: 2},
-    {text: "Hello world", id: 3},
-    {text: "Hello world", id: 4}
-  ];
+  var posts = [];
 
   // the current id to assign to a post
-  var currentId = 5;
+  var currentId = 0;
   var $posts = $('.posts');
 
   var _findPostById = function (id) {
@@ -29,7 +24,7 @@ var SpacebookApp = function () {
     posts.push(post);
   }
 
-  var updatePosts = function () {
+  var renderPosts = function () {
     $posts.empty();
 
     for (var i = 0; i < posts.length; i += 1) {
@@ -50,16 +45,17 @@ var SpacebookApp = function () {
     $clickedPost.remove();
   }
 
-  updatePosts();
-
   return {
     createPost: createPost,
-    updatePosts: updatePosts,
+    renderPosts: renderPosts,
     removePost: removePost
   }
 }
 
 var app = SpacebookApp();
+
+// immediately invoke the render method
+app.renderPosts();
 
 // Events
 $('.add-post').on('click', function (e) {
@@ -67,7 +63,7 @@ $('.add-post').on('click', function (e) {
 
   var text = $('#post-name').val();
   app.createPost(text);
-  app.updatePosts();
+  app.renderPosts();
 });
 
 $('.posts').delegate('a', 'click', function () {
