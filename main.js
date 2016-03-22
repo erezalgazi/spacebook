@@ -1,20 +1,20 @@
 var SpacebookApp = function () {
   var posts = [
-    {text: "Hello world", id: 0, comments:[
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"}
-    ]},
-    {text: "Hello world", id: 0, comments:[
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"}
-    ]},
-    {text: "Hello world", id: 0, comments:[
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"},
-      { text: "Man, this is a comment!"}
-    ]}
+    // {text: "Hello world", id: 0, comments:[
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"}
+    // ]},
+    // {text: "Hello world", id: 0, comments:[
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"}
+    // ]},
+    // {text: "Hello world", id: 0, comments:[
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"},
+    //   { text: "Man, this is a comment!"}
+    // ]}
   ];
 
   // the current id to assign to a post
@@ -76,10 +76,14 @@ var SpacebookApp = function () {
     renderPosts: renderPosts,
     removePost: removePost,
 
-    createComment: createComment,
-    renderComments: renderComments,
-    removeComments: removeComments,
+    // TODO: Implement
+    // createComment: createComment,
 
+    // TODO: Implement
+    // renderComments: renderComments,
+
+    // TODO: Implement
+    // removeComments: removeComments,
     toggleComments: toggleComments
   }
 }
