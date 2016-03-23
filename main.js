@@ -4,13 +4,23 @@ var i = 0;
 $('.add-post').on('click', function (e) {
 	e.preventDefault();
 	var text = $('#post-name').val();
-	i++;
 	var id = i;
+	i++;
 	newPost(text,id);
 	postToDiv();
 	
 	$('.remove').click(function() {
 		$(this).parent().remove();
+		var removeIndex = $(this).parent().data().id;
+		// console.log(removeIndex);
+		posts.splice(removeIndex,1);
+		// console.log(posts);
+
+		for (var x = removeIndex; x < posts.length; x++) {
+			posts[x].id = posts[x].id - 1;
+		}
+		// console.log(posts);
+
 	});
 
 });
