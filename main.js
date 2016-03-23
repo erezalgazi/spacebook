@@ -46,13 +46,13 @@ var SpacebookApp = function () {
     for (var i = 0; i < posts.length; i += 1) {
       var post = posts[i];
 
-      var commentContainer = '<div class="comments-container">' +
+      var commentsContainer = '<div class="comments-container">' +
       '<input type="text" id="comment-name">' +
       '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
 
       $posts.append('<div class="post" data-id=' + post.id + '>'
         + '<a href="#" class="remove">remove</a> ' + '<a href="#" class="show-comments">comments</a> ' + post.text +
-        commentContainer + '</div>');
+        commentsContainer + '</div>');
     }
   }
 
@@ -99,7 +99,7 @@ $('.add-post').on('click', function (e) {
 
   var text = $('#post-name').val();
   app.createPost(text);
-  app.renderPostsxs();
+  app.renderPosts();
 });
 
 $('.posts').delegate('.remove', 'click', function () {
