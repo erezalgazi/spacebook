@@ -83,7 +83,7 @@ var SpacebookApp = function () {
     // renderComments: renderComments,
 
     // TODO: Implement
-    // removeComments: removeComments,
+    // removeComment: removeComment,
     toggleComments: toggleComments
   }
 }
