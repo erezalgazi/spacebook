@@ -1,4 +1,5 @@
 var posts = [];
+var comments = [];
 var i = 0;
 
 $('.add-post').on('click', function (e) {
@@ -7,8 +8,14 @@ $('.add-post').on('click', function (e) {
 	var id = i;
 	newPost(text,id);
 	postToDiv();
-	console.log(posts[i].id);
 	i++;
+	$('.add-comment').on('click', function (e) {
+		e.preventDefault();
+		var userName = $('.user-name').val();
+		var comment = $('.comment').val(); 
+		newComment(userName,comment);
+		postToComment();
+	});	
 	bindEvents();
 });
 
@@ -17,8 +24,6 @@ var bindEvents = function ()
   $('.remove').click(function () {
 		$(this).parent().remove();
   	var removeIndex = $(this).parent().data().id;
-		// var removeIndex = posts[removeIndex].id;
-		console.log(removeIndex);
 		for (x = 0; x < posts.length; x++) 
 		{
 			if (removeIndex === posts[x].id) 
@@ -26,37 +31,40 @@ var bindEvents = function ()
 				posts.splice(x,1);
 			}
 		}
-		console.log(posts);
 		i--;
 	});
 }
-
-
-
-// $('.remove').click(function() {
-// 	var removeIndex = $(this).parent().data().id;
-// 	// console.log(removeIndex);
-// 	posts.splice(removeIndex,1);
-// 	console.log(posts);
-
-// 	for (var x = removeIndex; x < posts.length; x++) {
-// 		posts[x].id = posts[x].id - 1;
-// 	}
-// 	console.log(posts);
-// 		$(this).parent().remove();
-// });
 
 var newPost = function (text, id) {
 	var post = {
 		text: text,
 		id: id
-	}
+	};
 	posts.push(post);
+};
+
+var newComment = function (userName, comment) {
+	var comment = {
+		userName: userName,
+		comment: comment
+	};
+	comments.push(comment);
 };
 
 var postToDiv = function () {
 	$('.posts').find('p').remove();
+	$('.posts').find('div').remove();
+	$('.posts').find('button').remove();
 	for (var t = 0; t < posts.length; t++) {
 		$('.posts').append('<p class="post" data-id="' + posts[t].id + '"> <a href="#" class="remove">remove</a> ' + posts[t].text + '</p>');
+		$('.posts').append('<div class="form-group"> <input type="text" class="form-control user-name" placeholder="User Name"> </input> </div> <div class="form-group"> <input type="text" class="form-control comment" placeholder="Commet Here"> </div> <button class="btn btn-primary add-comment">Comment</button> <div style="margin:30px;"></div>');
 	}
 }
+var postToComment = function () {
+	$('.posts').find('div').remove();
+	$('.posts').find('button').remove();
+	for (var t = 0; t < comments.length; t++) {
+		$('.posts').append('<p> User Name: ' + comments[t].userName + '</p> <p> Comment: ' + comments[t].comment + '</p>');	
+		$('.posts').append('<div class="form-group"> <input type="text" classs="form-control user-name" placeholder="User Name"> </input> </div> <div class="form-group"> <input type="text" class="form-control comment" placeholder="Commet Here"> </div> <button class="btn btn-primary add-comment">Comment</button> <div style="margin:30px;"></div>');
+	}
+};
