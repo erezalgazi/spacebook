@@ -47,7 +47,7 @@ var SpacebookApp = function () {
       var post = posts[i];
 
       var commentsContainer = '<div class="comments-container">' +
-      '<input type="text" id="comment-name">' +
+      '<input type="text" class="comment-name">' +
       '<button class="btn btn-primary add-comment">Post Comment</button> </div>';
 
       $posts.append('<div class="post" data-id=' + post.id + '>'
