@@ -65,6 +65,11 @@ var SpacebookApp = function () {
     }
   }
 
+var renderComments = function () {
+	for (var i =0; i<posts[0].comment.length; i++) {
+		$posts.append()
+	}
+} 
 
 
   var removePost = function (currentPost) {
@@ -126,3 +131,4 @@ $('.posts').on('click', '.remove', function () {
 // });
 
 
+  
